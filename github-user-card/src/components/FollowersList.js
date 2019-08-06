@@ -4,10 +4,10 @@ import Follower from './Follower';
 function FollowersList({ followers }) {
 
   return (
-    <div>
+    <div className="grid-view">
       {followers.map((item, index) => {
         console.log('MAP ITEM', item)
-        return <Follower user={item} key={index} />
+        return <Follower follower={item} key={index} />
       })}
     </div>
   )

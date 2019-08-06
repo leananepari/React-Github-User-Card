@@ -8,6 +8,9 @@ function Follower({ follower }) {
     <Image src={follower.avatar_url} wrapped ui={false} />
     <Card.Content>
       <Card.Header>{follower.login}</Card.Header>
+      <Card.Description>
+        {follower.url}
+      </Card.Description>
     </Card.Content>
   </Card>
   )
