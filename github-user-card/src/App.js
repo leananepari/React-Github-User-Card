@@ -23,9 +23,20 @@ class App extends React.Component {
       axios.get(user.followers_url)
       .then(res => {
         this.setState({
-          user: user,
-          followers: res.data
+          user: user
         })
+        res.data.forEach(item => {
+          this.getFollower(item.url)
+        })
+      })
+    })
+  }
+
+  getFollower = (url) => {
+    axios.get(url)
+    .then(res => {
+      this.setState({
+        followers: [...this.state.followers, res.data]
       })
     })
   }

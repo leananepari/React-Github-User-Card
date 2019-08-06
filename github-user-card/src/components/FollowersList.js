@@ -1,13 +1,11 @@
 import React from 'react';
-import Follower from './Follower';
+import UserCard from './UserCard';
 
 function FollowersList({ followers }) {
-
   return (
     <div className="grid-view">
       {followers.map((item, index) => {
-        console.log('MAP ITEM', item)
-        return <Follower follower={item} key={index} />
+        return <UserCard user={item} key={index} />
       })}
     </div>
   )

@@ -4,7 +4,7 @@ import { Card, Icon, Image } from 'semantic-ui-react';
 function UserCard({ user }) {
 console.log('USER CARD', user)
   return (
-    <Card>
+    <Card style={{marginTop: '14px'}}>
       <Image src={user.avatar_url} wrapped ui={false} />
       <Card.Content>
         <Card.Header>{user.name}</Card.Header>
