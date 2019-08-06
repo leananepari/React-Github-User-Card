@@ -42,7 +42,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('render app')
     return (
       <div className="App">
         <UserCard user={this.state.user}/>
