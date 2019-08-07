@@ -17,7 +17,12 @@ class FormInput extends React.Component {
 
   render() {
     return (
-      <Form style={{paddingTop: '30px'}} onSubmit={() => this.props.searchUser(this.state.user)}>
+      <Form style={{paddingTop: '30px'}} onSubmit={() => {
+         this.props.searchUser(this.state.user)
+         this.setState({
+           user: ''
+         })
+      }}>
         <Form.Group>
           <Form.Input 
            placeholder='search user' 

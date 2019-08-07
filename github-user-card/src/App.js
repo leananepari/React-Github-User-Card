@@ -11,12 +11,17 @@ class App extends React.Component {
     super();
     this.state = {
       user: '',
-      followers: []
+      followers: [],
+      apiUser: 'leananepari'
     }
   }
 
   componentDidMount () {
-    axios.get('https://api.github.com/users/leananepari')
+    this.fetchData();
+  }
+
+  fetchData = () => {
+    axios.get(`https://api.github.com/users/${this.state.apiUser}`)
     .then(res => {
       return res.data
     })
@@ -33,24 +38,18 @@ class App extends React.Component {
     })
   }
 
-  componentDidUpdate = (user) => {
-    axios.get(`https://api.github.com/users/${user}`)
-    .then(res => {
-      return res.data
-    })
-    .then(user => {
-      axios.get(user.followers_url)
-      .then(res => {
-        this.setState({
-          user: user
-        })
-        this.setState({
-          followers: []
-        })
-        res.data.forEach(item => {
-          this.getFollower(item.url)
-        })
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.apiUser !== this.state.apiUser) {
+      this.setState({
+        followers: []
       })
+      this.fetchData();
+    }
+  }
+
+  searchUser = (user) => {
+    this.setState({
+      apiUser: user
     })
   }
 
@@ -66,7 +65,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <FormInput searchUser={this.componentDidUpdate}/>
+        <FormInput searchUser={this.searchUser}/>
         <UserCard user={this.state.user}/>
         <FollowersList followers={this.state.followers}/>
       </div>
